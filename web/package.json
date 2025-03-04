@@ -1,0 +1,19 @@
+{
+  "name": "simple-webapp",
+  "version": "1.0.0",
+  "description": "A simple web application to demonstrate GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve -s .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github-actions",
+    "demo"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.0.0"
+  }
+}
