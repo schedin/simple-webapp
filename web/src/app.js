@@ -4,24 +4,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const decrementBtn = document.getElementById('decrement');
     const resetBtn = document.getElementById('reset');
     
-    let count = 0;
+    const API_BASE_URL = 'http://localhost:8080';
     
-    function updateCounter() {
-        counter.textContent = count;
+    // Initial fetch of counter value
+    fetchCounter();
+    
+    function updateCounter(value) {
+        counter.textContent = value;
+    }
+    
+    function fetchCounter() {
+        fetch(`${API_BASE_URL}/counter`)
+            .then(response => response.json())
+            .then(data => {
+                updateCounter(data.value);
+            })
+            .catch(error => {
+                console.error('Error fetching counter:', error);
+            });
+    }
+    
+    function performCounterAction(action) {
+        fetch(`${API_BASE_URL}/counter/${action}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            updateCounter(data.value);
+        })
+        .catch(error => {
+            console.error(`Error performing ${action}:`, error);
+        });
     }
     
     incrementBtn.addEventListener('click', () => {
-        count++;
-        updateCounter();
+        performCounterAction('increment');
     });
     
     decrementBtn.addEventListener('click', () => {
-        count--;
-        updateCounter();
+        performCounterAction('decrement');
     });
     
     resetBtn.addEventListener('click', () => {
-        count = 0;
-        updateCounter();
+        performCounterAction('reset');
     });
 });
