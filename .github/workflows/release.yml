@@ -34,7 +34,7 @@ jobs:
       - run: ls -la
 
       - name: Build everything
-        run: build-and-package.sh
+        run: ./build-and-package.sh
 
   build-backend:
     name: Build Kotlin Backend
