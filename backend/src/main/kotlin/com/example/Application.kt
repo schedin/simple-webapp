@@ -10,7 +10,7 @@ import io.ktor.server.routing.*
 import io.ktor.http.*
 
 fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+    embeddedServer(Netty, port = 8081, host = "0.0.0.0") {
         module()
     }.start(wait = true)
 }

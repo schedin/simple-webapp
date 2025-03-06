@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const decrementBtn = document.getElementById('decrement');
     const resetBtn = document.getElementById('reset');
     
-    const API_BASE_URL = 'http://localhost:8080';
+    // Use environment variable or fall back to default
+    const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8081';
     
     // Initial fetch of counter value
     fetchCounter();
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error fetching counter:', error);
+                counter.textContent = 'Error';
             });
     }
     
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error(`Error performing ${action}:`, error);
+            counter.textContent = 'Error';
         });
     }
     

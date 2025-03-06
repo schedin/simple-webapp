@@ -1,6 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+// Define API URL with a default value
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8081';
 
 module.exports = {
   entry: './src/app.js',
@@ -18,13 +22,15 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.API_BASE_URL': JSON.stringify(API_BASE_URL)
+    }),
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'styles', to: 'styles' },
-        // Add any other assets you want to copy to the dist folder
       ]
     })
   ],
@@ -35,7 +41,7 @@ module.exports = {
     compress: true,
     port: 9000,
     proxy: {
-      '/counter': 'http://localhost:8080'
+      '/counter': `http://localhost:8081`
     }
   }
 };
