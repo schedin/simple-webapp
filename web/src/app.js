@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('reset');
     
     // Use API URL from config.js
-    const API_BASE_URL = window.APP_CONFIG.API_BASE_URL;
+    const API_BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) || 'http://localhost:8081';
     
     // Initial fetch of counter value
     fetchCounter();
