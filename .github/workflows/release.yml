@@ -9,7 +9,7 @@ env:
 
 jobs:
   build-frontend:
-    name: Build Web Frontend
+    name: Build and publish web frontend
     runs-on: self-hosted
     env:
       FRONTEND_IMAGE_NAME: counter-web
@@ -34,8 +34,11 @@ jobs:
         run: skopeo copy containers-storage:localhost/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }} docker://${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }}
 
   build-backend:
-    name: Build Kotlin Backend
+    name: Build and pushlish backend
     runs-on: self-hosted
+    env:
+      BACKEND_IMAGE_NAME: counter-backend
+      BACKEND_IMAGE_TAG: ${{ github.event.release.tag_name }}    
     defaults:
       run:
         working-directory: ./backend
@@ -45,3 +48,12 @@ jobs:
 
       - name: Build everything
         run: ./build-and-package.sh ${{ github.event.release.tag_name }}
+
+      - name: Build application
+        run: ./gradlew clean build
+
+      - name: Build Docker image
+        run: podman build -t ${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }} .
+
+      - name: Push container  to registry
+        run: skopeo copy containers-storage:localhost/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }} docker://${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }}
