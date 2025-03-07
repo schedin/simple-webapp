@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  REGISTRY: localhost:12345/simple-webapp
+  REGISTRY: 10.81.0.8:12345/simple-webapp
 
 jobs:
   build-frontend:
