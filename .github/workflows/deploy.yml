@@ -1,0 +1,20 @@
+name: Deploy application
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the application to deploy'
+        required: true
+        default: 'v1.0'
+        type: string
+
+jobs:
+  deploy-kubernetes:
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: ./charts
+
+    steps:
+      - name: Deploy Helm chart
+        run: helm upgrade --install simple-webapp simple-webapp --set image.tag=${{ github.event.inputs.version }} --namespace simple-webapp --create-namespace
