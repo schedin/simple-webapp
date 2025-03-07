@@ -13,6 +13,9 @@ jobs:
   build-frontend:
     name: Build Web Frontend
     runs-on: self-hosted
+    env:
+      FRONTEND_IMAGE_NAME: counter-web
+      FRONTEND_IMAGE_TAG: ${{ github.event.release.tag_name }}
     defaults:
       run:
         working-directory: ./web
@@ -23,8 +26,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build everything
-        run: ./build-and-package.sh ${{ github.event.release.tag_name }}
+      - name: Build frontend
+        run: npm run build
+
+      - name: Build Docker image
+        run: podman build -t ${{ FRONTEND_IMAGE_NAME }}:${{ FRONTEND_IMAGE_TAG }} .
+
+      - name: Push container  to registry
+        run: skopeo copy skopeo copy containers-storage:osix/certificates docker://{REGISTRY}/{{ FRONTEND_IMAGE_NAME }}:${{ FRONTEND_IMAGE_TAG }}
 
   build-backend:
     name: Build Kotlin Backend
