@@ -24,4 +24,6 @@ jobs:
       - name: Display ASCII Art
         run: |
           echo "Generated ASCII Art:"
-          echo '${{ steps.figlet.outputs.ascii_art }}'
+          cat << 'EOF'
+          ${{ steps.figlet.outputs.ascii_art }}
+          EOF
