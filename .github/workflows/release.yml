@@ -34,7 +34,7 @@ jobs:
         run: skopeo copy containers-storage:localhost/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }} docker://${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }}
 
   build-backend:
-    name: Build and pushlish backend
+    name: Build and publish backend
     runs-on: self-hosted
     env:
       BACKEND_IMAGE_NAME: counter-backend
