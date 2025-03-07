@@ -16,5 +16,11 @@ jobs:
         working-directory: ./charts
 
     steps:
+      - name: Set up kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
       - name: Deploy Helm chart
         run: helm upgrade --install simple-webapp simple-webapp --set image.tag=${{ github.event.inputs.version }} --namespace simple-webapp --create-namespace
