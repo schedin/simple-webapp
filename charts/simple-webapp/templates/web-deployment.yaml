@@ -22,4 +22,5 @@ spec:
               protocol: TCP
           env:
             - name: API_BASE_URL
-              value: "http://backend:8081
+              value: "http://backend:8081"
+
