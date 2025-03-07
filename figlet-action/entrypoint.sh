@@ -10,6 +10,8 @@ ASCII_ART=$(figlet "$INPUT_TEXT")
 # Output the ASCII art
 echo "$ASCII_ART"
 
+echo "$GITHUB_OUTPUT"
+
 # Set the output for GitHub Actions
 echo "ascii-art<<EOF" >> $GITHUB_OUTPUT
 echo "$ASCII_ART" >> $GITHUB_OUTPUT
