@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Generate ASCII Art
-        uses: ./figlet-action
+        uses: ./.github/actions/figlet-action
         id: figlet
         with:
           text: ${{ github.event.inputs.text }}
