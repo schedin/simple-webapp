@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  REGISTRY: ghcr.io
+  REGISTRY: localhost:12345/simple-webapp
 
 jobs:
   build-frontend:
@@ -31,7 +31,7 @@ jobs:
         run: podman build -t ${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }} .
 
       - name: Push container  to registry
-        run: skopeo copy containers-storage:osix/certificates docker://${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }}
+        run: skopeo copy containers-storage:${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }} docker://${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE_NAME }}:${{ env.FRONTEND_IMAGE_TAG }}
 
   build-backend:
     name: Build Kotlin Backend
