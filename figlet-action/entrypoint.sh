@@ -1,18 +1,8 @@
 #!/bin/bash
 set -e
 
-# Get the input text
-INPUT_TEXT="$INPUT_TEXT"
-
-# If no text is provided through INPUT_TEXT, use the first argument
-if [ -z "$INPUT_TEXT" ]; then
-  INPUT_TEXT="$1"
-fi
-
-# Default text if nothing is provided
-if [ -z "$INPUT_TEXT" ]; then
-  INPUT_TEXT="Hello World"
-fi
+# Get the input text from environment variable
+INPUT_TEXT="${INPUT_TEXT:-Hello World}"
 
 # Run figlet and capture the output
 ASCII_ART=$(figlet "$INPUT_TEXT")

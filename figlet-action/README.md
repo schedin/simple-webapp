@@ -1,6 +1,6 @@
 # Figlet ASCII Art GitHub Action
 
-This GitHub Action generates ASCII art from text using the figlet tool.
+This GitHub Action generates ASCII art from text using figlet tool.
 
 ## Inputs
 
