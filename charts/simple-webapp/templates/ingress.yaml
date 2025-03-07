@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-webapp-ingress
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: simple-webapp.polystar.net
+      http:
+        paths:
+          - path: /backend
+            pathType: Prefix
+            backend:
+              service:
+                name: backend
+                port:
+                  name: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  name: http
