@@ -1,0 +1,27 @@
+name: Figlet ASCII Art Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 'Text to convert to ASCII art'
+        required: true
+        default: 'Hello World'
+        type: string
+
+jobs:
+  generate-ascii:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Generate ASCII Art
+        uses: ./figlet-action
+        id: figlet
+        with:
+          text: ${{ github.event.inputs.text }}
+          
+      - name: Display ASCII Art
+        run: |
+          echo "Generated ASCII Art:"
+          echo "${{ steps.figlet.outputs.ascii-art }}"
