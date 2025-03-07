@@ -1,0 +1,19 @@
+name: 'Figlet ASCII Art Action'
+description: 'Generate ASCII art from text using figlet'
+author: 'Your Name'
+inputs:
+  text:
+    description: 'The text to convert to ASCII art'
+    required: true
+    default: 'Hello World'
+outputs:
+  ascii-art:
+    description: 'The generated ASCII art'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.text }}
+branding:
+  icon: 'type'
+  color: 'blue'
