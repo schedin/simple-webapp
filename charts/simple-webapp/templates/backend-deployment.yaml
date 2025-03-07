@@ -13,7 +13,7 @@ spec:
         app: backend
     spec:
       containers:
-        - name: web
+        - name: backend
           image: "{{ .Values.imageBaseRepository }}/counter-backend:{{ .Values.image.tag}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

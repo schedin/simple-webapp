@@ -22,5 +22,9 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
           chmod 600 $HOME/.kube/config
 
-      - name: Deploy Helm chart
-        run: helm upgrade --install simple-webapp simple-webapp --set image.tag=${{ github.event.inputs.version }} --namespace simple-webapp --create-namespace
+      run: |
+        helm upgrade --install simple-webapp simple-webapp \
+          --set imageBaseRepository=k3d-registry.localhost:12345/simple-webapp \
+          --set image.tag=${{ github.event.inputs.version }} \
+          --namespace simple-webapp \
+          --create-namespace
