@@ -50,7 +50,7 @@ jobs:
         run: ./gradlew clean build
 
       - name: Build Docker image
-        run: podman build -t ${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }} .
+        run: podman build -t ${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_TAG }} .
 
       - name: Push container  to registry
-        run: skopeo copy containers-storage:localhost/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }} docker://${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_NAME }}
+        run: skopeo copy containers-storage:localhost/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_TAG }} docker://${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}:${{ env.BACKEND_IMAGE_TAG }}

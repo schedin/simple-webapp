@@ -1,5 +1,5 @@
 
-image-base-repository: ""
+imageBaseRepository: ""
 image:
   pullPolicy: Always
   tag: "latest"

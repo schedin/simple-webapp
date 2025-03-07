@@ -10,5 +10,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    labels:
-      app: backend
+    app: backend

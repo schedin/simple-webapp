@@ -3,14 +3,18 @@ kind: Deployment
 metadata:
   name: web
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
   template:
     metadata:
-    labels:
-      app: web
+      labels:
+        app: web
     spec:
       containers:
         - name: web
-          image: "{{ .Values.image-base-repository }}:{{ .Values.image.tag}}"
+          image: "{{ .Values.imageBaseRepository }}/counter-web:{{ .Values.image.tag}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
