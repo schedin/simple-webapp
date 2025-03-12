@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 
 class CounterServiceTest {
     
-    @Ignore
+    //@Ignore
     @Test
     fun `increment should increase counter value by 1`() {
         // Arrange
