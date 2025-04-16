@@ -8,7 +8,6 @@ on:
 
 env:
   REGISTRY: 10.81.0.8:12345/simple-webapp
-  IMAGE_TAG: ${{ github.event.release.tag_name || 'latest' }}
 
 jobs:
   build-frontend:
@@ -16,14 +15,14 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       FRONTEND_IMAGE_NAME: counter-web
-      FRONTEND_IMAGE_TAG: ${{ env.IMAGE_TAG }}
+      FRONTEND_IMAGE_TAG: ${{ github.event.release.tag_name || 'latest' }}
     defaults:
       run:
         working-directory: ./web
 
     steps:
       - uses: actions/checkout@v3
-          
+
       - name: Install dependencies
         run: npm ci
 
@@ -41,11 +40,11 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       BACKEND_IMAGE_NAME: counter-backend
-      BACKEND_IMAGE_TAG: ${{ github.event.release.tag_name || 'latest' }}    
+      BACKEND_IMAGE_TAG: ${{ github.event.release.tag_name || 'latest' }}
     defaults:
       run:
         working-directory: ./backend
-        
+
     steps:
       - uses: actions/checkout@v3
 
