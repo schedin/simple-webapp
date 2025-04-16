@@ -10,7 +10,7 @@ env:
 jobs:
   build-frontend:
     name: Build and publish web frontend
-    runs-on: self-hosted
+    runs-on: schedin-arc-runner-scale-set
     env:
       FRONTEND_IMAGE_NAME: counter-web
       FRONTEND_IMAGE_TAG: ${{ github.event.release.tag_name }}
@@ -35,7 +35,7 @@ jobs:
 
   build-backend:
     name: Build and publish backend
-    runs-on: self-hosted
+    runs-on: schedin-arc-runner-scale-set
     env:
       BACKEND_IMAGE_NAME: counter-backend
       BACKEND_IMAGE_TAG: ${{ github.event.release.tag_name }}    
