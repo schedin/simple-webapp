@@ -8,6 +8,7 @@ on:
 
 env:
   REGISTRY: 10.81.0.8:12345/simple-webapp
+  IMAGE_TAG: ${{ github.event.release.tag_name || 'latest' }}
 
 jobs:
   build-frontend:
@@ -15,7 +16,7 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       FRONTEND_IMAGE_NAME: counter-web
-      FRONTEND_IMAGE_TAG: ${{ github.event.release.tag_name }}
+      FRONTEND_IMAGE_TAG: ${{ env.IMAGE_TAG }}
     defaults:
       run:
         working-directory: ./web
@@ -40,7 +41,7 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       BACKEND_IMAGE_NAME: counter-backend
-      BACKEND_IMAGE_TAG: ${{ github.event.release.tag_name }}    
+      BACKEND_IMAGE_TAG: ${{ env.IMAGE_TAG }}    
     defaults:
       run:
         working-directory: ./backend
