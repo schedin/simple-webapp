@@ -1,6 +1,8 @@
 name: Release Container Images
 
 on:
+  push:
+    branches: [ main ]
   release:
     types: [published]
 
