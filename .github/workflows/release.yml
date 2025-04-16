@@ -16,7 +16,7 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       FRONTEND_IMAGE_NAME: counter-web
-      FRONTEND_IMAGE_TAG: ${{ IMAGE_TAG }}
+      FRONTEND_IMAGE_TAG: ${{ env.IMAGE_TAG }}
     defaults:
       run:
         working-directory: ./web
@@ -41,7 +41,7 @@ jobs:
     runs-on: schedin-arc-runner-scale-set
     env:
       BACKEND_IMAGE_NAME: counter-backend
-      BACKEND_IMAGE_TAG: ${{ IMAGE_TAG }}    
+      BACKEND_IMAGE_TAG: ${{ env.IMAGE_TAG }}    
     defaults:
       run:
         working-directory: ./backend
