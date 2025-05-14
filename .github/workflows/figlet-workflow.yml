@@ -10,7 +10,7 @@ on:
 
 jobs:
   generate-ascii:
-    runs-on: ubuntu-latest
+    runs-on: schedin-arc-runner-scale-set
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
