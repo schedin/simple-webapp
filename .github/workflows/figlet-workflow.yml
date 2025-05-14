@@ -15,7 +15,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - run: ls -l ${HOME}/_work/_temp/
+      - run: ls -l /home/runner/_work/_temp/
+
+      - run: mkdir -p /home/runner/_work/_temp/_github_home
+
+      - run: ls -l /home/runner/_work/_temp/
 
       # - name: Sleep for development purposes
       #   run: sleep 3600
