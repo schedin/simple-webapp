@@ -21,7 +21,7 @@ jobs:
 
       - run: ls -l /home/runner/_work/_temp/
 
-      - run: sleep 3600
+      - run: sleep 1800
 
       - name: Generate ASCII Art
         uses: ./.github/actions/figlet-action
