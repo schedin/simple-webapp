@@ -15,8 +15,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Sleep for development purposes
-        run: sleep 3600
+      # - name: Sleep for development purposes
+      #   run: sleep 3600
 
       - name: Generate ASCII Art
         uses: ./.github/actions/figlet-action
