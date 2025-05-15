@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  generate-ascii:
+  generate-ascii-sleep:
     runs-on: schedin-arc-runner-scale-set
     steps:
       - name: Checkout repository
