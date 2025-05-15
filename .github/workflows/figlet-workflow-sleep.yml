@@ -1,4 +1,4 @@
-name: Figlet ASCII Art Workflow
+name: Figlet ASCII Art Workflow with sleep
 on:
   workflow_dispatch:
     inputs:
@@ -20,6 +20,8 @@ jobs:
       - run: mkdir -p /home/runner/_work/_temp/_github_home
 
       - run: ls -l /home/runner/_work/_temp/
+
+      - run: sleep 1800
 
       - name: Generate ASCII Art
         uses: ./.github/actions/figlet-action
