@@ -10,7 +10,7 @@ on:
 
 jobs:
   generate-ascii:
-    runs-on: schedin-arc-runner-scale-set
+    runs-on: simple-webapp-runner-set
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
